@@ -12,3 +12,23 @@ here.
 # imports, version and other info moved to package top level
 
 # TODO: move pvconstants here
+
+# import matplotlib in try: except so tests can run in a virtualenv on Mac OS X
+pyplot_error = NotImplementedError
+try:
+    from matplotlib import pyplot as pyplot_module
+except RuntimeError as exc:
+    pyplot_module = None
+    pyplot_error = exc
+
+
+def requires_matplotlib(func):
+    """
+    Decorator raises RuntimeError if matplotlib not installed as Framework on
+    Mac OS X, for example if running from virtualenv.
+    """
+    def wrapper(*args, **kwargs):
+        if not pyplot_module:
+            raise pyplot_error
+        return func(*args, *kwargs)
+    return wrapper

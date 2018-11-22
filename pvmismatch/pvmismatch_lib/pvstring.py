@@ -9,7 +9,7 @@ from past.builtins import range
 from future.utils import iteritems
 import numpy as np
 from copy import copy
-from matplotlib import pyplot as plt
+from pvmismatch.pvmismatch_lib import requires_matplotlib, pyplot_module as plt
 # use absolute imports instead of relative, so modules are portable
 from pvmismatch.pvmismatch_lib.pvconstants import PVconstants, NUMBERMODS
 from pvmismatch.pvmismatch_lib.pvmodule import PVmodule
@@ -205,6 +205,7 @@ class PVstring(object):
         # update modules
         self.Istring, self.Vstring, self.Pstring = self.calcString()
 
+    @requires_matplotlib
     def plotStr(self):
         """
         Plot string I-V curves.

@@ -9,7 +9,7 @@ from builtins import zip
 from six import itervalues
 import numpy as np
 from copy import copy
-from matplotlib import pyplot as plt
+from pvmismatch.pvmismatch_lib import requires_matplotlib, pyplot_module as plt
 # use absolute imports instead of relative, so modules are portable
 from pvmismatch.pvmismatch_lib.pvconstants import PVconstants, get_series_cells
 from pvmismatch.pvmismatch_lib.pvcell import PVcell
@@ -499,6 +499,7 @@ class PVmodule(object):
         Pmod = Imod * Vmod
         return Imod, Vmod, Pmod, Isubstr, Vsubstr
 
+    @requires_matplotlib
     def plotCell(self):
         """
         Plot cell I-V curves.
@@ -537,6 +538,7 @@ class PVmodule(object):
         plt.grid()
         return cellPlot
 
+    @requires_matplotlib
     def plotMod(self):
         """
         Plot module I-V curves.

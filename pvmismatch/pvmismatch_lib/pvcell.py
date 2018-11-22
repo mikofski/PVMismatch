@@ -8,8 +8,8 @@ object which is used by modules, strings and systems.
 from __future__ import absolute_import
 from future.utils import iteritems
 from pvmismatch.pvmismatch_lib.pvconstants import PVconstants
+from pvmismatch.pvmismatch_lib import requires_matplotlib, pyplot_module as plt
 import numpy as np
-from matplotlib import pyplot as plt
 from scipy.optimize import newton
 
 # Defaults
@@ -299,6 +299,7 @@ class PVcell(object):
                 self.Isat1, self.Isat2, self.Rsh)
         return newton(self.f_Vcell, x0=self.Voc, args=args)
 
+    @requires_matplotlib
     def plot(self):
         """
         Plot cell I-V curve.

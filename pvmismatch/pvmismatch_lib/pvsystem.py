@@ -9,7 +9,7 @@ from past.builtins import basestring
 from future.utils import iteritems
 import numpy as np
 from copy import copy
-from matplotlib import pyplot as plt
+from pvmismatch.pvmismatch_lib import requires_matplotlib, pyplot_module as plt
 # use absolute imports instead of relative, so modules are portable
 from pvmismatch.pvmismatch_lib.pvconstants import PVconstants, NUMBERMODS, \
     NUMBERSTRS
@@ -197,6 +197,7 @@ class PVsystem(object):
         # calculate pvsystem
         self.update()
 
+    @requires_matplotlib
     def plotSys(self, sysPlot=None):
         """
         Plot system I-V curves.
